@@ -11,18 +11,39 @@
             overflow-x: hidden; /* Evita lo scrolling orizzontale */
         }
 
-        /* Sfondo dinamico */
-        body::before {
-            content: "";
+        /* Contenitore per il video e il gradiente */
+        .background-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, #E1306C, #1a1a1a, #333, #E1306C);
+            z-index: -1; /* Manda lo sfondo dietro il contenuto */
+            overflow: hidden;
+        }
+
+        /* Video come sfondo */
+        video.fullscreen {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Adatta il video al contenitore */
+            transform: translate(-50%, -50%);
+        }
+
+        /* Overlay con gradiente animato */
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #000000, #E1306C, #1a1a1a, #000000);
             background-size: 400% 400%;
             animation: gradientAnimation 10s ease infinite;
-            z-index: -1; /* Manda lo sfondo dietro il contenuto */
+            mix-blend-mode: overlay; /* Combina il gradiente con il video */
         }
 
         @keyframes gradientAnimation {
@@ -122,13 +143,6 @@
             width: 100%;
         }
 
-        /* Stile per l'immagine principale */
-        img.fullscreen {
-            width: 100%;
-            height: 7cm;
-            object-fit: cover;
-        }
-
         /* Contenitore per QR code e pulsanti */
         .qr-container {
             text-align: center;
@@ -156,11 +170,21 @@
     </style>
 </head>
 <body>
+    <!-- Contenitore per il video e il gradiente -->
+    <div class="background-container">
+        <video autoplay muted loop class="fullscreen">
+            <source src="https://videos.pexels.com/video-files/4496268/4496268-hd_1920_1080_25fps.mp4" type="video/mp4">
+            Il tuo browser non supporta i video HTML5.
+        </video>
+        <div class="gradient-overlay"></div>
+    </div>
+
     <!-- Menu di navigazione -->
     <nav>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#servizi">Servizi</a></li>
+            <li><a href="#creazione-siti">Creazione Siti</a></li>
             <li><a href="#contatto">Contatti</a></li>
         </ul>
     </nav>
@@ -171,9 +195,6 @@
         <p>Assistenza Informatica e Creazione Siti Web</p>
     </header>
 
-    <!-- Immagine principale -->
-    <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg" alt="immagine codice" class="fullscreen">
-    
     <!-- Contenitore per QR code e pulsanti -->
     <div class="qr-container">
         <img src="https://i.ibb.co/rG43jyHC/IMG-20250514-121611-629-2.png" alt="QR Code Instagram" class="qrcode">
@@ -192,7 +213,7 @@
         <a href="#contatto" class="button">Richiedi Assistenza</a>
     </section>
 
-    <!-- Aggiungi questa sezione subito dopo la sezione "Servizi di Assistenza Informatica" -->
+    <!-- Sezione: Creazione Siti Web -->
     <section id="creazione-siti">
         <h2>Creazione Siti Web</h2>
         <p>Offriamo siti web semplici e professionali per piccole imprese e professionisti. Ecco cosa possiamo fare per te:</p>
