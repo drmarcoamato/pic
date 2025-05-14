@@ -2,13 +2,13 @@
 <html lang="it">
 <head>
     <title>Web & Tech Solutions</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <style>
-        /* Stile generale */
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', Arial, sans-serif;
             color: white;
-            overflow-x: hidden; /* Evita lo scrolling orizzontale */
+            overflow-x: hidden;
         }
 
         /* Contenitore per il video e il gradiente */
@@ -18,7 +18,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Manda lo sfondo dietro il contenuto */
+            z-index: -1;
             overflow: hidden;
         }
 
@@ -29,7 +29,7 @@
             left: 50%;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Adatta il video al contenitore */
+            object-fit: cover;
             transform: translate(-50%, -50%);
         }
 
@@ -43,31 +43,23 @@
             background: linear-gradient(45deg, #000000, #E1306C, #1a1a1a, #000000);
             background-size: 400% 400%;
             animation: gradientAnimation 10s ease infinite;
-            mix-blend-mode: overlay; /* Combina il gradiente con il video */
+            mix-blend-mode: overlay;
         }
 
         @keyframes gradientAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* Menu di navigazione */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: rgba(0, 0, 0, 0.8); /* Sfondo semi-trasparente */
+            background-color: rgba(0, 0, 0, 0.8);
             padding: 10px 0;
             z-index: 1000;
         }
-
         nav ul {
             list-style: none;
             display: flex;
@@ -75,96 +67,118 @@
             margin: 0;
             padding: 0;
         }
-
         nav ul li {
             margin: 0 15px;
         }
-
         nav ul li a {
             color: white;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease;
         }
-
         nav ul li a:hover {
-            color: #E1306C; /* Rosa Instagram */
+            color: #E1306C;
         }
 
-        /* Intestazione */
         header {
-            background-color: rgba(0, 0, 0, 0.8); /* Sfondo semi-trasparente */
+            background-color: rgba(0, 0, 0, 0.8);
             color: white;
-            padding: 60px 20px 20px; /* Spazio extra per evitare sovrapposizione con il menu */
+            padding: 60px 20px 20px;
             text-align: center;
         }
 
-        /* Sezioni */
         section {
             padding: 20px;
             margin: 20px;
-            background-color: rgba(26, 26, 26, 0.9); /* Grigio scuro semi-trasparente */
+            background-color: rgba(26, 26, 26, 0.9);
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
-        h1, h2 {
-            color: #E1306C; /* Rosa Instagram */
+        /* Sposta la sezione servizi ancora più in basso (circa 15cm) */
+        #servizi {
+            margin-top: 300px;
         }
 
-        /* Pulsanti */
+        h1, h2 {
+            color: #E1306C;
+        }
+
         a.button {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #E1306C; /* Rosa Instagram */
+            background-color: #E1306C;
             color: white;
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
             text-align: center;
             margin-top: 10px;
-            transition: all 0.3s ease; /* Animazione fluida */
+            transition: all 0.3s ease;
         }
-
         a.button:hover {
-            background-color: #ff4081; /* Cambia colore */
-            box-shadow: 0 0 10px #ff4081; /* Aggiunge un'ombra luminosa */
-            transform: scale(1.1); /* Leggero ingrandimento */
+            background-color: #ff4081;
+            box-shadow: 0 0 10px #ff4081;
+            transform: scale(1.1);
         }
 
-        /* Footer */
-        footer {
-            background-color: rgba(51, 51, 51, 0.8); /* Sfondo semi-trasparente */
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: static; /* Cambia da fixed a static */
-            bottom: 0;
-            width: 100%;
-        }
-
-        /* Contenitore per QR code e pulsanti */
         .qr-container {
             text-align: center;
             margin: 20px 0;
         }
-
         img.qrcode {
-            width: 150px; /* Dimensione di default */
-            max-width: 100%; /* Adatta la larghezza allo schermo */
-            height: auto; /* Mantiene le proporzioni */
+            width: 150px;
+            max-width: 100%;
+            height: auto;
             display: block;
             margin: 0 auto;
         }
 
-        /* Stile per dispositivi mobili */
+        footer {
+            background-color: rgba(51, 51, 51, 0.8);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: static;
+            bottom: 0;
+            width: 100%;
+        }
+
         @media (max-width: 768px) {
             header {
-                padding: 80px 20px 20px; /* Spazio extra per il menu fisso */
+                padding: 80px 20px 20px;
             }
-
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                padding: 0;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            .qr-container {
+                margin: 10px 0;
+            }
             img.qrcode {
-                width: 100px; /* Riduce la dimensione del QR code */
+                width: 100px;
+            }
+            section {
+                margin: 10px 2vw;
+                padding: 10px 5px;
+                font-size: 1em;
+            }
+            a.button {
+                width: 100%;
+                box-sizing: border-box;
+                font-size: 1em;
+                padding: 14px 0;
+                margin-top: 10px;
+            }
+            ul {
+                padding-left: 18px;
+            }
+            #servizi {
+                margin-top: 120px;
             }
         }
     </style>
@@ -172,7 +186,7 @@
 <body>
     <!-- Contenitore per il video e il gradiente -->
     <div class="background-container">
-        <video autoplay muted loop class="fullscreen">
+        <video autoplay muted loop playsinline class="fullscreen">
             <source src="https://videos.pexels.com/video-files/4496268/4496268-hd_1920_1080_25fps.mp4" type="video/mp4">
             Il tuo browser non supporta i video HTML5.
         </video>
@@ -194,12 +208,6 @@
         <h1>Web & Tech Solutions</h1>
         <p>Assistenza Informatica e Creazione Siti Web</p>
     </header>
-
-    <!-- Contenitore per QR code e pulsanti -->
-    <div class="qr-container">
-        <img src="https://i.ibb.co/93SbK2s6/Screenshot-20250514-182009.png" alt="QR Code Instagram" class="qrcode">
-        <a href="https://www.instagram.com/webtechsolutions.it?utm_source=qr&igsh=Y29xeXRraXJmZHN0" target="_blank" class="button">Seguimi su Instagram</a>
-    </div>
 
     <!-- Sezione: Servizi -->
     <section id="servizi">
@@ -224,6 +232,15 @@
             <li>Ottimizzazione per dispositivi mobili</li>
         </ul>
         <a href="#contatto" class="button">Richiedi un Preventivo</a>
+    </section>
+
+    <!-- Sezione: Social -->
+    <section id="social" style="text-align:center; margin: 20px;">
+        <h2>Seguici sui Social</h2>
+        <div class="qr-container">
+            <img src="https://i.ibb.co/93SbK2s6/Screenshot-20250514-182009.png" alt="QR Code Instagram" class="qrcode">
+            <a href="https://www.instagram.com/webtechsolutions.it?utm_source=qr&igsh=Y29xeXRraXJmZHN0" target="_blank" class="button">Seguici su Instagram</a>
+        </div>
     </section>
 
     <!-- Sezione: Contatti -->
