@@ -3,6 +3,7 @@
 <head>
     <title>Web & Tech Solutions</title>
     <style>
+        /* Stile generale */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -36,13 +37,48 @@
             }
         }
 
+        /* Menu di navigazione */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Sfondo semi-trasparente */
+            padding: 10px 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #E1306C; /* Rosa Instagram */
+        }
+
+        /* Intestazione */
         header {
             background-color: rgba(0, 0, 0, 0.8); /* Sfondo semi-trasparente */
             color: white;
-            padding: 20px;
+            padding: 60px 20px 20px; /* Spazio extra per evitare sovrapposizione con il menu */
             text-align: center;
         }
 
+        /* Sezioni */
         section {
             padding: 20px;
             margin: 20px;
@@ -55,6 +91,7 @@
             color: #E1306C; /* Rosa Instagram */
         }
 
+        /* Pulsanti */
         a.button {
             display: inline-block;
             padding: 10px 20px;
@@ -65,8 +102,16 @@
             font-weight: bold;
             text-align: center;
             margin-top: 10px;
+            transition: all 0.3s ease; /* Animazione fluida */
         }
 
+        a.button:hover {
+            background-color: #ff4081; /* Cambia colore */
+            box-shadow: 0 0 10px #ff4081; /* Aggiunge un'ombra luminosa */
+            transform: scale(1.1); /* Leggero ingrandimento */
+        }
+
+        /* Footer */
         footer {
             background-color: rgba(51, 51, 51, 0.8); /* Sfondo semi-trasparente */
             color: white;
@@ -86,29 +131,22 @@
 
         /* Contenitore per QR code e pulsanti */
         .qr-container {
-            position: absolute; /* Posizionamento assoluto */
-            top: 200px; /* Sposta il contenitore più in basso */
-            right: 10px; /* Distanza dal bordo destro */
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Centra il pulsante sotto il QR code */
+            text-align: center;
+            margin: 20px 0;
         }
 
-        /* Stile per il QR Code */
         img.qrcode {
             width: 150px; /* Dimensione di default */
             max-width: 100%; /* Adatta la larghezza allo schermo */
             height: auto; /* Mantiene le proporzioni */
             display: block;
+            margin: 0 auto;
         }
 
         /* Stile per dispositivi mobili */
         @media (max-width: 768px) {
-            .qr-container {
-                position: relative; /* Cambia il posizionamento a relativo */
-                top: auto; /* Rimuove il valore di top */
-                margin-top: 50px; /* Aggiunge spazio sopra il QR code */
-                text-align: center; /* Centra il contenitore */
+            header {
+                padding: 80px 20px 20px; /* Spazio extra per il menu fisso */
             }
 
             img.qrcode {
@@ -118,8 +156,17 @@
     </style>
 </head>
 <body>
+    <!-- Menu di navigazione -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#servizi">Servizi</a></li>
+            <li><a href="#contatto">Contatti</a></li>
+        </ul>
+    </nav>
+
     <!-- Intestazione -->
-    <header>
+    <header id="home">
         <h1>Web & Tech Solutions</h1>
         <p>Assistenza Informatica e Creazione Siti Web</p>
     </header>
@@ -129,17 +176,12 @@
     
     <!-- Contenitore per QR code e pulsanti -->
     <div class="qr-container">
-        <!-- QR Code per Instagram -->
         <img src="https://i.ibb.co/rG43jyHC/IMG-20250514-121611-629-2.png" alt="QR Code Instagram" class="qrcode">
-        
-        <!-- Pulsante per Instagram -->
-        <a href="https://www.instagram.com/marcoamato?utm_source=qr&igsh=bm55aTd5NGd6Y2l3" target="_blank" class="button">
-            Seguimi su Instagram
-        </a>
+        <a href="https://www.instagram.com/marcoamato?utm_source=qr&igsh=bm55aTd5NGd6Y2l3" target="_blank" class="button">Seguimi su Instagram</a>
     </div>
 
-    <!-- Sezione: Servizi di Assistenza Informatica -->
-    <section>
+    <!-- Sezione: Servizi -->
+    <section id="servizi">
         <h2>Servizi di Assistenza Informatica</h2>
         <ul>
             <li>Configurazione di computer e dispositivi mobili</li>
@@ -150,19 +192,20 @@
         <a href="#contatto" class="button">Richiedi Assistenza</a>
     </section>
 
-    <!-- Sezione: Creazione Siti Web -->
-    <section>
+    <!-- Aggiungi questa sezione subito dopo la sezione "Servizi di Assistenza Informatica" -->
+    <section id="creazione-siti">
         <h2>Creazione Siti Web</h2>
-        <p>Offriamo siti web semplici e professionali per piccole imprese e professionisti. Ecco cosa possiamo fare:</p>
+        <p>Offriamo siti web semplici e professionali per piccole imprese e professionisti. Ecco cosa possiamo fare per te:</p>
         <ul>
             <li>Siti web statici e responsivi</li>
             <li>Moduli di contatto e gallerie fotografiche</li>
             <li>Personalizzazione del design</li>
+            <li>Ottimizzazione per dispositivi mobili</li>
         </ul>
         <a href="#contatto" class="button">Richiedi un Preventivo</a>
     </section>
 
-    <!-- Modulo di Contatto -->
+    <!-- Sezione: Contatti -->
     <section id="contatto">
         <h2>Contattaci</h2>
         <form action="mailto:tuoemail@example.com" method="post" enctype="text/plain">
