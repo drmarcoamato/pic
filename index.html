@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>Marco Amato - Sviluppatore Web</title>
+    <style>
+        /* Colore di sfondo della pagina */
+        body {
+            background-color: #000000; /* Nero */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Stile per l'immagine principale */
+        img.fullscreen {
+            width: 100%;
+            height: 7cm;
+            object-fit: cover;
+        }
+
+        /* Contenitore per QR code e pulsante */
+        .qr-container {
+            position: absolute; /* Posizionamento assoluto */
+            top: 57.8px; /* 20px + 37.8px (1 cm in più) */
+            right: 10px; /* Distanza dal bordo destro */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra il pulsante sotto il QR code */
+        }
+
+        /* Stile per il pulsante Instagram */
+        a.button {
+            display: inline-block;
+            padding: 5px 15px; /* Dimensioni del pulsante */
+            background-color: #E1306C; /* Rosa Instagram */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 14px; /* Dimensione del testo */
+            margin-top: 10px; /* Spazio tra il QR code e il pulsante */
+        }
+
+        /* Stile per il QR Code */
+        img.qrcode {
+            width: 150px; /* Dimensione di default */
+            max-width: 100%; /* Adatta la larghezza allo schermo */
+            height: auto; /* Mantiene le proporzioni */
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Immagine principale -->
+    <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg" alt="immagine codice" class="fullscreen">
+    
+    <!-- Contenitore per QR code e pulsante -->
+    <div class="qr-container">
+        <!-- QR Code per Instagram -->
+        <img src="https://i.ibb.co/rG43jyHC/IMG-20250514-121611-629-2.png" alt="QR Code Instagram" class="qrcode">
+        
+        <!-- Pulsante per Instagram -->
+        <a href="https://www.instagram.com/marcoamato?utm_source=qr&igsh=bm55aTd5NGd6Y2l3" target="_blank" class="button">
+            Seguimi su Instagram
+        </a>
+    </div>
+</body>
+</html>
