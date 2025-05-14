@@ -12,8 +12,6 @@
             overflow-x: hidden;
             background: #000;
         }
-
-        /* --- DESKTOP STYLE --- */
         .background-container {
             position: fixed;
             top: 0;
@@ -229,7 +227,6 @@
             margin: 0;
             line-height: 1.5;
         }
-
         /* --- MOBILE WEB APP STYLE --- */
         .mobile-webapp { display: none; }
         @media (max-width: 700px) {
@@ -282,6 +279,74 @@
             .mobile-qr img {
                 border-radius: 12px;
                 box-shadow: 0 2px 12px #00000055;
+            }
+            .mobile-popup-blur {
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                width: 100vw; height: 100vh;
+                background: rgba(0,0,0,0.25);
+                backdrop-filter: blur(6px);
+                z-index: 9998;
+                transition: opacity 0.3s;
+            }
+            .mobile-popup {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0.95);
+                background: #23232b;
+                color: #fff;
+                border-radius: 18px;
+                box-shadow: 0 8px 32px #00000099;
+                padding: 48px 18px 18px 18px; /* <--- aumenta il padding-top */
+                max-width: 90vw;
+                width: 340px;
+                z-index: 9999;
+                text-align: center;
+                animation: popupIn 0.35s cubic-bezier(.23,1.02,.53,.97);
+                opacity: 1;
+            }
+            .mobile-popup ul {
+                text-align: left;
+                margin: 18px 0 0 0;
+                padding: 0 0 0 18px;
+                font-size: 1.08em;
+                list-style: disc;
+            }
+            .mobile-popup h3 {
+                margin-top: 0;
+                color: #E1306C;
+                font-size: 1.25em;
+            }
+            .close-desc {
+                position: absolute;
+                top: 10px;
+                right: 14px;
+                background: linear-gradient(90deg, #E1306C 60%, #ff4081 100%);
+                color: #fff;
+                border: none;
+                border-radius: 50%;
+                width: 36px;
+                height: 36px;
+                font-size: 1.7em;
+                font-weight: bold;
+                cursor: pointer;
+                box-shadow: 0 2px 12px #e1306c33;
+                transition: background 0.2s, transform 0.2s;
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .close-desc:hover {
+                background: #fff;
+                color: #E1306C;
+                transform: scale(1.15) rotate(10deg);
+                box-shadow: 0 2px 16px #ff4081;
+            }
+            @keyframes popupIn {
+                0% { opacity: 0; transform: translate(-50%, -60%) scale(0.8);}
+                100% { opacity: 1; transform: translate(-50%, -50%) scale(1);}
             }
         }
     </style>
@@ -393,15 +458,39 @@
         <div class="mobile-buttons">
             <a href="#servizi" class="button">Servizi</a>
             <a href="#creazione-siti" class="button">Siti Web</a>
-            <a href="#social" class="button">Instagram</a>
-            <a href="#contatto" class="button">Contattaci</a>
+            <a href="https://www.instagram.com/webtechsolutions.it?utm_source=qr&igsh=Y29xeXRraXJmZHN0" target="_blank" class="button">Instagram</a>
+            <a href="mailto:webtechsolutions.it@gmail.com" class="button">Contattaci</a>
         </div>
         <div class="mobile-qr">
             <img src="https://i.ibb.co/93SbK2s6/Screenshot-20250514-182009.png" alt="QR Instagram" style="width:120px; margin:20px auto; display:block;">
         </div>
+        <!-- Overlay blur per popup -->
+        <div id="mobile-popup-blur" class="mobile-popup-blur" style="display:none;"></div>
+        <!-- Popup descrizione servizi -->
+        <div id="mobile-servizi-desc" class="mobile-popup" style="display:none;">
+            <button class="close-desc" aria-label="Chiudi">&times;</button>
+            <h3>Servizi di Assistenza Informatica</h3>
+            <ul>
+                <li>Configurazione dispositivi</li>
+                <li>Gestione account e password</li>
+                <li>Installazione software e antivirus</li>
+                <li>Assistenza tecnica</li>
+            </ul>
+        </div>
+        <!-- Popup descrizione siti -->
+        <div id="mobile-siti-desc" class="mobile-popup" style="display:none;">
+            <button class="close-desc" aria-label="Chiudi">&times;</button>
+            <h3>Creazione Siti Web</h3>
+            <ul>
+                <li>Siti responsive e moderni</li>
+                <li>Gallerie fotografiche e moduli</li>
+                <li>Design personalizzato</li>
+                <li>Ottimizzazione mobile</li>
+            </ul>
+        </div>
     </div>
 
-    <!-- Scroll fluido -->
+    <!-- Scroll fluido e gestione descrizioni mobile -->
     <script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.polyfills.min.js"></script>
     <script>
         var scroll = new SmoothScroll('a[href*="#"]', {
@@ -410,11 +499,38 @@
             offset: 80,
             easing: 'easeInOutCubic'
         });
-        document.querySelectorAll('a[href="#"]').forEach(function(link) {
-            link.addEventListener('click', function(e) {
+
+        // Gestione descrizioni mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            var btnServizi = document.querySelector('.mobile-buttons .button[href="#servizi"]');
+            var btnSiti = document.querySelector('.mobile-buttons .button[href="#creazione-siti"]');
+            var closeBtns = document.querySelectorAll('.close-desc');
+            var descServizi = document.getElementById('mobile-servizi-desc');
+            var descSiti = document.getElementById('mobile-siti-desc');
+            var blur = document.getElementById('mobile-popup-blur');
+
+            function closeAllPopups() {
+                descServizi.style.display = 'none';
+                descSiti.style.display = 'none';
+                blur.style.display = 'none';
+            }
+
+            if(btnServizi) btnServizi.onclick = function(e) {
                 e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                descServizi.style.display = 'block';
+                descSiti.style.display = 'none';
+                blur.style.display = 'block';
+            };
+            if(btnSiti) btnSiti.onclick = function(e) {
+                e.preventDefault();
+                descServizi.style.display = 'none';
+                descSiti.style.display = 'block';
+                blur.style.display = 'block';
+            };
+            closeBtns.forEach(function(btn) {
+                btn.onclick = closeAllPopups;
             });
+            if(blur) blur.onclick = closeAllPopups;
         });
     </script>
 </body>
