@@ -16,43 +16,82 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             z-index: -1;
             overflow: hidden;
         }
-
-        /* Video come sfondo */
         video.fullscreen {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             object-fit: cover;
             transform: translate(-50%, -50%);
         }
-
-        /* Overlay con gradiente animato */
         .gradient-overlay {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             background: linear-gradient(45deg, #000000, #E1306C, #1a1a1a, #000000);
             background-size: 400% 400%;
             animation: gradientAnimation 10s ease infinite;
             mix-blend-mode: overlay;
         }
-
         @keyframes gradientAnimation {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        nav {
+        /* Titolo centrale animato */
+        .hero-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            width: 100vw;
+            pointer-events: none;
+            animation: fadeInUp 1.2s cubic-bezier(.23,1.02,.53,.97);
+        }
+        .hero-title h1 {
+            font-size: 3.2em;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin: 0 0 10px 0;
+            text-shadow: 0 4px 24px #00000099, 0 1px 0 #e1306c55;
+            animation: colorPulse 2.5s infinite alternate;
+        }
+        .hero-title p {
+            font-size: 1.3em;
+            font-weight: 400;
+            margin: 0;
+            text-shadow: 0 2px 8px #00000077;
+            letter-spacing: 1px;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, 20%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+        @keyframes colorPulse {
+            0% { color: #fff; text-shadow: 0 4px 24px #e1306c55, 0 1px 0 #fff; }
+            100% { color: #E1306C; text-shadow: 0 4px 24px #fff, 0 1px 0 #e1306c; }
+        }
+
+        /* Navbar glassmorphism */
+        .glass-navbar {
             position: fixed;
             top: 20px;
             left: 50%;
@@ -67,7 +106,7 @@
             border: 1px solid rgba(255,255,255,0.13);
             padding: 0;
         }
-        nav ul {
+        .glass-navbar ul {
             list-style: none;
             display: flex;
             justify-content: center;
@@ -75,10 +114,10 @@
             margin: 0;
             padding: 0;
         }
-        nav ul li {
+        .glass-navbar ul li {
             margin: 0 22px;
         }
-        nav ul li a {
+        .glass-navbar ul li a {
             color: #fff;
             text-decoration: none;
             font-weight: 700;
@@ -88,18 +127,11 @@
             border-radius: 8px;
             transition: background 0.3s, color 0.3s, box-shadow 0.3s;
         }
-        nav ul li a:hover,
-        nav ul li a:focus {
+        .glass-navbar ul li a:hover,
+        .glass-navbar ul li a:focus {
             background: #E1306C;
             color: #fff;
             box-shadow: 0 2px 12px #e1306c55;
-        }
-
-        header {
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 60px 20px 20px;
-            text-align: center;
         }
 
         section {
@@ -110,9 +142,20 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
-        /* Sposta la sezione servizi ancora più in basso (circa 15cm) */
+        /* Spaziature tra le sezioni per evitare sovrapposizioni */
         #servizi {
-            margin-top: 300px;
+            margin-top: 900px;
+            margin-bottom: 180px;
+        }
+        #creazione-siti {
+            margin-bottom: 350px;
+        }
+        #social {
+            text-align: center;
+            margin: 350px 20px 350px 20px;
+        }
+        #contatto {
+            margin-top: 350px;
         }
 
         h1, h2 {
@@ -159,7 +202,7 @@
             width: 100%;
         }
 
-        /* Stili per le card dei servizi */
+        /* Card layout per servizi e creazione siti */
         .card-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -227,6 +270,8 @@
                 max-width: 95vw;
                 min-width: 0;
             }
+            .hero-title h1 { font-size: 2em; }
+            .hero-title p { font-size: 1em; }
         }
         @media (max-width: 700px) {
             .glass-navbar {
@@ -246,6 +291,7 @@
     </style>
 </head>
 <body>
+    <div id="home"></div>
     <!-- Contenitore per il video e il gradiente -->
     <div class="background-container">
         <video autoplay muted loop playsinline class="fullscreen">
@@ -253,12 +299,16 @@
             Il tuo browser non supporta i video HTML5.
         </video>
         <div class="gradient-overlay"></div>
+        <div class="hero-title">
+            <h1>Web & Tech Solutions</h1>
+            <p>Assistenza Informatica e Creazione Siti Web</p>
+        </div>
     </div>
 
     <!-- Menu di navigazione -->
     <nav class="glass-navbar">
         <ul>
-            <li><a href="#home">Home</a></li>
+            <li><a href="#">Home</a></li>
             <li><a href="#servizi">Servizi</a></li>
             <li><a href="#creazione-siti">Creazione Siti</a></li>
             <li><a href="#social">Social</a></li>
@@ -266,14 +316,8 @@
         </ul>
     </nav>
 
-    <!-- Intestazione -->
-    <header id="home">
-        <h1>Web & Tech Solutions</h1>
-        <p>Assistenza Informatica e Creazione Siti Web</p>
-    </header>
-
     <!-- Sezione: Servizi -->
-    <section id="servizi" style="margin-top: 700px; margin-bottom: 180px;">
+    <section id="servizi" style="margin-top: 900px; margin-bottom: 180px;">
         <h2>Servizi di Assistenza Informatica</h2>
         <div class="card-container">
             <div class="card">
@@ -301,7 +345,7 @@
     </section>
 
     <!-- Sezione: Creazione Siti Web -->
-    <section id="creazione-siti" style="margin-bottom: 350px;">
+    <section id="creazione-siti">
         <h2>Creazione Siti Web</h2>
         <div class="card-container">
             <div class="card">
@@ -329,7 +373,7 @@
     </section>
 
     <!-- Sezione: Social -->
-    <section id="social" style="text-align:center; margin: 350px 20px 350px 20px;">
+    <section id="social">
         <h2>Seguici sui Social</h2>
         <div class="qr-container">
             <img src="https://i.ibb.co/93SbK2s6/Screenshot-20250514-182009.png" alt="QR Code Instagram" class="qrcode">
@@ -338,7 +382,7 @@
     </section>
 
     <!-- Sezione: Contatti -->
-    <section id="contatto" style="margin-top: 350px;">
+    <section id="contatto">
         <h2>Contattaci</h2>
         <form action="https://formsubmit.co/webtechsolutions.it@gmail.com" method="POST">
             <input type="hidden" name="_captcha" value="false">
@@ -357,6 +401,7 @@
         <p>&copy; 2025 Web & Tech Solutions - Tutti i diritti riservati</p>
     </footer>
 
+    <!-- Scroll fluido -->
     <script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.polyfills.min.js"></script>
     <script>
         var scroll = new SmoothScroll('a[href*="#"]', {
@@ -364,6 +409,14 @@
             speedAsDuration: true,
             offset: 80,
             easing: 'easeInOutCubic'
+        });
+
+        // Scroll in alto quando si clicca su Home
+        document.querySelectorAll('a[href="#"]').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         });
     </script>
 </body>
